@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday - 4u</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000000; /* Black background */
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    /* Typing animation for the text */
+    .typing {
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0; /* Start with no width */
+      animation: typing 3s steps(30, end) forwards; /* Typing effect with 3s duration */
+    }
+
+    /* Typing animation */
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    /* Midnight Text */
+    .midnight-text {
+      font-size: 16px; /* Smaller for mobile */
+      color: white;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      letter-spacing: 1px;
+      text-shadow: 1px 1px 8px rgba(255, 255, 255, 0.8);
+      visibility: hidden; /* Hidden until triggered */
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    /* Happy Birthday Text */
+    .birthday-popup {
+      font-size: 36px; /* Smaller for mobile */
+      color: white; /* White color */
+      font-family: 'Great Vibes', cursive, sans-serif; /* Elegant cursive font */
+      font-weight: bold;
+      text-align: center;
+      letter-spacing: -1px;
+      text-shadow: 1px 1px 8px rgba(255, 255, 255, 0.6);
+      visibility: hidden; /* Hidden until triggered */
+      margin-bottom: 10px;
+    }
+
+    /* Birthday Wish Text */
+    .birthday-wish {
+      font-size: 14px; /* Smaller for mobile */
+      color: white;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      letter-spacing: 1px;
+      text-shadow: 1px 1px 8px rgba(255, 255, 255, 0.8);
+      visibility: hidden; /* Hidden until triggered */
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    /* Glowing stars with blinking effect */
+    .star {
+      position: absolute;
+      background-color: white;
+      border-radius: 50%;
+      width: 1px;
+      height: 1px;
+      animation: blink 2s infinite alternate;
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.8); /* Adding glow effect */
+    }
+
+    @keyframes blink {
+      0% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+
+    /* Confetti styles */
+    .confetti {
+      position: absolute;
+      width: 4px; /* Smaller for mobile */
+      height: 4px;
+      opacity: 0.8;
+      animation: confettiFall 5s linear infinite;
+    }
+
+    @keyframes confettiFall {
+      0% { top: -10px; transform: rotate(0deg); }
+      100% { top: 100vh; transform: rotate(360deg); }
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 1080px) {
+      body {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .midnight-text {
+        font-size: 14px; /* Smaller for mobile */
+        line-height: 1.2;
+        margin-bottom: 5px;
+      }
+
+      .birthday-popup {
+        font-size: 28px; /* Smaller for mobile */
+        margin-bottom: 5px;
+      }
+
+      .birthday-wish {
+        font-size: 12px; /* Smaller for mobile */
+        line-height: 1.2;
+        margin-bottom: 5px;
+      }
+
+      .star {
+        width: 1px;
+        height: 1px;
+      }
+
+      .confetti {
+        width: 3px;
+        height: 3px;
+      }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Midnight Text -->
+  <div class="midnight-text" id="midnight-text">
+    🔓🥳 It's 12:00 AM now! <br> Your special day is officially arrived! 🎊🎂
+  </div>
+
+  <!-- Happy Birthday Popup -->
+  <div class="birthday-popup" id="birthday-popup">
+    🎂 Happy Birthday 🎉
+  </div>
+
+  <!-- Birthday Wish Text -->
+  <div class="birthday-wish" id="birthday-wish">
+    Cheers to another year full of 🌈 <br> Happiness, positivity, success & achievements 🎈
+  </div>
+
+  <!-- Audio Player -->
+  <div>
+    <iframe src="https://drive.google.com/file/d/1PrkCEfPOkhVijSmmigWWMDArmBm44ahh/preview" width="320" height="40" allow="autoplay"></iframe>
+  </div>
+
+  <!-- Generate stars -->
+  <script>
+    // Function to generate stars
+    function generateStars() {
+      const starCount = 100; // Reduced for mobile
+      for (let i = 0; i < starCount; i++) {
+        let star = document.createElement('div');
+        star.classList.add('star');
+        const size = Math.random() * 1 + 1; // Adjust size for smaller stars
+        star.style.left = Math.random() * window.innerWidth + 'px';
+        star.style.top = Math.random() * window.innerHeight + 'px';
+        star.style.width = size + 'px';
+        star.style.height = size + 'px';
+        document.body.appendChild(star);
+      }
+    }
+
+    // Function to generate colorful confetti
+    function generateConfetti() {
+      const confettiColors = ['#FF6347', '#FFD700', '#32CD32', '#00FFFF', '#8A2BE2', '#FF00FF', '#FF1493'];
+      const confettiCount = 50; // Reduced for mobile
+
+      for (let i = 0; i < confettiCount; i++) {
+        let confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+
+        // Assign random color to each confetti
+        confetti.style.backgroundColor = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+
+        // Random position and animation speed for each confetti
+        confetti.style.left = Math.random() * window.innerWidth + 'px';
+        confetti.style.animationDuration = Math.random() * 3 + 2 + 's'; // Varying speed for confetti fall
+        document.body.appendChild(confetti);
+      }
+    }
+
+    // Function to type text sequentially
+    function typeTextSequentially() {
+      const midnightText = document.getElementById('midnight-text');
+      const birthdayPopup = document.getElementById('birthday-popup');
+      const birthdayWish = document.getElementById('birthday-wish');
+
+      // Show and animate the first text
+      midnightText.style.visibility = 'visible';
+      midnightText.classList.add('typing');
+
+      // Trigger the second text immediately after the first one finishes typing
+      setTimeout(() => {
+        birthdayPopup.style.visibility = 'visible';
+        birthdayPopup.classList.add('typing');
+      }, 1500); // Matches the duration of the first animation (1.5s delay)
+
+      // Trigger the third text immediately after the second one finishes typing
+      setTimeout(() => {
+        birthdayWish.style.visibility = 'visible';
+        birthdayWish.classList.add('typing');
+        generateConfetti(); // Start colorful confetti after the last text is shown
+      }, 3000); // Matches the duration of the first and second animations combined (3s total)
+    }
+
+    // Trigger star generation and text typing on page load
+    window.onload = () => {
+      generateStars();
+      typeTextSequentially();
+    };
+  </script>
+
+</body>
+</html>
